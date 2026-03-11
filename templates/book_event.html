@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Event</title>
+</head>
+<body>
+    <h2>Book Event</h2>
+
+    <form method="POST">
+
+        Select User:
+        <select name="user_id">
+            {% for user in users %}
+                <option value="{{ user[0] }}">{{ user[1] }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        Select Event Type:
+        <select name="event_type">
+            {% for event in event_types %}
+                <option value="{{ event[0] }}">{{ event[1] }} (₹{{ event[2] }})</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        Select Venue:
+        <select name="venue">
+            {% for venue in venues %}
+                <option value="{{ venue[0] }}">{{ venue[1] }} (₹{{ venue[3] }})</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <h3>Select Services</h3>
+        {% for service in services %}
+            <input type="checkbox" name="services" value="{{ service[0] }}">
+            {{ service[1] }} (₹{{ service[2] }})
+            Quantity:
+            <input type="number" name="quantity_{{ service[0] }}" value="1" min="1">
+            <br><br>
+        {% endfor %}
+
+        Event Date:
+        <input type="date" name="event_date" required>
+        <br><br>
+
+        <button type="submit">Book Event</button>
+    </form>
+
+    <br>
+    <a href="/">Back to Home</a>
+
+</body>
+</html>
